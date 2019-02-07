@@ -26,7 +26,7 @@ def rotate_side(cube, side, clockvise):
 
 
 def rotate_U(cube):
-    print("U ", end='')
+    print("U ", end="")
     cube = rotate_side(cube, 0, True)
     seq = ((1, 0), (2, 0), (3, 0), (4, 0)), ((1, 4), (2, 4), (3, 4), (4, 4)), ((1, 1), (2, 1), (3, 1), (4, 1))
     for i in range(3):
@@ -38,7 +38,7 @@ def rotate_U(cube):
 
 
 def rotate_U_counter(cube):
-    print("U' ", end='')
+    print("U' ", end="")
     cube = rotate_side(cube, 0, False)
     seq = ((1, 0), (4, 0), (3, 0), (2, 0)), ((1, 4), (4, 4), (3, 4), (2, 4)), ((1, 1), (4, 1), (3, 1), (2, 1))
     for i in range(3):
@@ -50,7 +50,7 @@ def rotate_U_counter(cube):
 
 
 def rotate_L(cube):
-    print("L ", end='')
+    print("L ", end="")
     cube = rotate_side(cube, 1, True)
     seq = ((0, 0), (4, 2), (5, 0), (2, 0)), ((0, 7), (4, 5), (5, 7), (2, 7)), ((0, 3), (4, 1), (5, 3), (2, 3))
     for i in range(3):
@@ -62,7 +62,7 @@ def rotate_L(cube):
 
 
 def rotate_L_counter(cube):
-    print("L' ", end='')
+    print("L' ", end="")
     cube = rotate_side(cube, 1, False)
     seq = ((0, 0), (2, 0), (5, 0), (4, 2)), ((0, 7), (2, 7), (5, 7), (4, 5)), ((0, 3), (2, 3), (5, 3), (4, 1))
     for i in range(3):
@@ -74,7 +74,7 @@ def rotate_L_counter(cube):
 
 
 def rotate_F(cube):
-    print("F ", end='')
+    print("F ", end="")
     cube = rotate_side(cube, 2, True)
     seq = ((0, 2), (1, 1), (5, 0), (3, 3)), ((0, 6), (1, 5), (5, 4), (3, 7)), ((0, 3), (1, 2), (5, 1), (3, 0))
     for i in range(3):
@@ -86,7 +86,7 @@ def rotate_F(cube):
 
 
 def rotate_F_counter(cube):
-    print("F' ", end='')
+    print("F' ", end="")
     cube = rotate_side(cube, 2, False)
     seq = ((0, 2), (3, 3), (5, 0), (1, 1)), ((0, 6), (3, 7), (5, 4), (1, 5)), ((0, 3), (3, 0), (5, 1), (1, 2))
     for i in range(3):
@@ -98,7 +98,7 @@ def rotate_F_counter(cube):
 
 
 def rotate_R(cube):
-    print("R ", end='')
+    print("R ", end="")
     # Elforgatja a bal oldalt
     cube = rotate_side(cube, 3, True)
     # Forgatás sorrendjét elmentem (oldalakat)
@@ -112,7 +112,7 @@ def rotate_R(cube):
 
 
 def rotate_R_counter(cube):
-    print("R' ", end='')
+    print("R' ", end="")
     # Elforgatja a bal oldalt
     cube = rotate_side(cube, 3, False)
     # Forgatás sorrendjét elmentem (oldalakat)
@@ -126,7 +126,7 @@ def rotate_R_counter(cube):
 
 
 def rotate_B(cube):
-    print("B ", end='')
+    print("B ", end="")
     cube = rotate_side(cube, 4, True)
     seq = ((0, 0), (3, 1), (5, 2), (1, 3)), ((0, 4), (3, 5), (5, 6), (1, 7)), ((0, 1), (3, 2), (5, 3), (1, 0))
     for i in range(3):
@@ -138,7 +138,7 @@ def rotate_B(cube):
 
 
 def rotate_B_counter(cube):
-    print("B' ", end='')
+    print("B' ", end="")
     cube = rotate_side(cube, 4, False)
     seq = ((0, 0), (1, 3), (5, 2), (3, 1)), ((0, 4), (1, 7), (5, 6), (3, 5)), ((0, 1), (1, 0), (5, 3), (3, 2))
     for i in range(3):
@@ -150,7 +150,7 @@ def rotate_B_counter(cube):
 
 
 def rotate_D(cube):
-    print("D ", end='')
+    print("D ", end="")
     cube = rotate_side(cube, 5, True)
     seq = ((1, 3), (4, 3), (3, 3), (2, 3)), ((1, 6), (4, 6), (3, 6), (2, 6)), ((1, 2), (4, 2), (3, 2), (2, 2))
     for i in range(3):
@@ -162,7 +162,7 @@ def rotate_D(cube):
 
 
 def rotate_D_counter(cube):
-    print("D' ", end='')
+    print("D' ", end="")
     cube = rotate_side(cube, 5, False)
     seq = ((1, 3), (2, 3), (3, 3), (4, 3)), ((1, 6), (2, 6), (3, 6), (4, 6)), ((1, 2), (2, 2), (3, 2), (4, 2))
     for i in range(3):

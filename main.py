@@ -30,53 +30,120 @@ def print_cube(cube):
 # Scrambles the cube by performing a random rotations (f times)
 def scramble(cube, f):
     print("Scramble: ", end='')
+    prev = -1
+    streak = 0
     for i in range(f):
         r = randint(0, 12)
+        # If the next equalt the previous, then add 1 to the streak
+        if r == prev:
+            streak += 1
+            # If at least 3 in a row, delete last
+            if streak >= 2:
+                streak = 1
+                r = -1
+                i -= 1
+        # If not equals the prev
+        else:
+            streak = 0
+            # If the next is the counter part of the prev, then delete it
+            if int(r / 2) == int(prev / 2):
+                r = -1
+                i -= 1
         if r == 0:
             cube = rotations.rotate_U(cube)
-            print("U ", end='')
         elif r == 1:
             cube = rotations.rotate_U_counter(cube)
-            print("U' ", end='')
         elif r == 2:
             cube = rotations.rotate_L(cube)
-            print("L ", end='')
         elif r == 3:
             cube = rotations.rotate_L_counter(cube)
-            print("L' ", end='')
         elif r == 4:
             cube = rotations.rotate_F(cube)
-            print("F ", end='')
         elif r == 5:
             cube = rotations.rotate_F_counter(cube)
-            print("F' ", end='')
         elif r == 6:
             cube = rotations.rotate_R(cube)
-            print("R ", end='')
         elif r == 7:
             cube = rotations.rotate_R_counter(cube)
-            print("R' ", end='')
         elif r == 8:
             cube = rotations.rotate_B(cube)
-            print("B ", end='')
         elif r == 9:
             cube = rotations.rotate_B_counter(cube)
-            print("B' ", end='')
         elif r == 10:
             cube = rotations.rotate_D(cube)
-            print("D ", end='')
         elif r == 11:
             cube = rotations.rotate_D_counter(cube)
-            print("D' ", end='')
+        prev = r
     print("\n")
     return cube
 
 
+# Returns if the positions are good for the swap algorithm
+def edge_all_good(cube, a, b):
+    if cube[0][7] == a and cube[1][7] == b:
+        if cube[0][1] == 'w' and cube[0][2] == 'w':
+            if cube[3][0] == 'r' and cube[3][1] == 'r':
+                if cube[2][1] == 'g' and cube[4][0] == 'b':
+                    return True
+    return False
+
+
+# Copies a given cube
+def copy_cube(cube):
+    copy = cube_to_solved()
+    for x in range(6):
+        for y in range(9):
+            copy[x][y] = cube[x][y]
+    return copy
+
+
+# Will learn how to bring the edge to the swap position
+def get_edge_moves(cube, a, b):
+    print("get edge moves")
+    prevcube = copy_cube(cube)
+    t = 0
+    while t < 4:
+        for r in range(12):
+            if r == 0:
+                cube = rotations.rotate_U(cube)
+            elif r == 1:
+                cube = rotations.rotate_U_counter(cube)
+            elif r == 2:
+                cube = rotations.rotate_L(cube)
+            elif r == 3:
+                cube = rotations.rotate_L_counter(cube)
+            elif r == 4:
+                cube = rotations.rotate_F(cube)
+            elif r == 5:
+                cube = rotations.rotate_F_counter(cube)
+            elif r == 6:
+                cube = rotations.rotate_R(cube)
+            elif r == 7:
+                cube = rotations.rotate_R_counter(cube)
+            elif r == 8:
+                cube = rotations.rotate_B(cube)
+            elif r == 9:
+                cube = rotations.rotate_B_counter(cube)
+            elif r == 10:
+                cube = rotations.rotate_D(cube)
+            elif r == 11:
+                cube = rotations.rotate_D_counter(cube)
+            if edge_all_good(cube, a, b):
+                print("\n" + str(r))
+                return
+            cube = copy_cube(prevcube)
+            print()
+        t += 1
+        if t == 2:
+            break
+        
+
+
+
 cube = cube_to_solved()
-cube = scramble(cube, 16)
+cube = scramble(cube, 20)
 print_cube(cube)
 cube = solving.solve(cube)
 print_cube(cube)
 
-
-
+get_edge_moves(cube, 'y', 'o')

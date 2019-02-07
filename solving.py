@@ -539,38 +539,53 @@ def get_corner_colors(a, b):
             return 'yob'
 
 
+# Solves the cube
 def solve(cube):
     print("Solving: ", end='')
+    # While the edges arent solved
     while not is_edges_solved(cube):
+        # If the edge isnt the bufferer, then bring the edge (in the bufferer position) to its place
         if not is_edge_buffer(cube):
             cube = bring_edge_to_change(cube, cube[0][5], cube[3][4])
             cube = change_edges(cube)
             cube = bring_edge_back(cube, cube[0][7], cube[1][4])
+        # If the bufferer position has the right edge, then search for a edge not in the right place
         else:
             quit = False
+            # Loop through the edges
             for s in range(6):
                 if not quit:
                     for b in range(4, 8):
+                        # If the color of the square is not the same with the one in the middle
                         if cube[s][b] != cube[s][8]:
+                            # Gets the colors (like "wo")
                             colors = get_block_colors(s, b)
+                            # If the wrong edge isn't the bufferer, then 
                             if not ((colors[0] == 'w' and colors[1] == 'r') or (colors[1] == 'w' and colors[0] == 'r')):
                                 cube = bring_edge_to_change(cube, colors[0], colors[1])
                                 cube = change_edges(cube)
                                 cube = bring_edge_back(cube, colors[0], colors[1])
                                 quit = True
                                 break
+    # While the corners aren't solved
     while not is_corners_solved(cube):
+        # If the corder isn't the bufferer, then bring the corner (in the bufferer position) to it's place
         if not is_corner_buffer(cube):
             cube = bring_corner_to_change(cube, cube[1][0], cube[0][0], cube[4][1])
             cube = change_corners(cube)
             cube = bring_corner_back(cube, cube[5][1], cube[3][3], cube[2][2])
+        # If the bufferer position has the right corner, then search for a corder not in the right place
         else:
             quit = False
+            # Loop through the corners
             for s in range(6):
                 if not quit:
                     for b in range(4):
+                        # If the color doesn't match with the middle
                         if cube[s][b] != cube[s][8]:
+                            # Gets the colors
                             colors = get_corner_colors(s, b)
+                            # If the wrong edge isn't the burfferer, then bring it to its place
                             if not (colors == 'owb' or colors == 'wbo' or colors == 'bow'):
                                 cube = bring_corner_to_change(cube, colors[0], colors[1], colors[2])
                                 cube = change_corners(cube)
